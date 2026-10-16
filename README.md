@@ -21,7 +21,7 @@ O app tambem detecta automaticamente um unico arquivo `*-firebase-adminsdk-*.jso
 
 1. Envie o codigo do app para um repositorio GitHub. Nao inclua a chave JSON nem `.streamlit/secrets.toml`.
 2. Em [share.streamlit.io](https://share.streamlit.io/), crie um app e selecione o repositorio, branch e `app.py`.
-3. Abra **App settings > Secrets** e cole o bloco TOML abaixo. Substitua os valores `COLE_...` pelos campos equivalentes do JSON da conta de servico. Mantenha `private_key` como string TOML entre aspas, com as sequencias `\n` da chave.
+3. Abra **App settings > Secrets** e cole o conteudo completo do arquivo local `.streamlit/secrets.toml`, que ja foi preenchido com a conta de servico. Nao envie esse arquivo ao repositorio. O bloco abaixo mostra a estrutura caso precise configurar Secrets em outra maquina; nesse caso, substitua os valores `COLE_...` pelos campos equivalentes do JSON.
 
 ```toml
 FIREBASE_PROJECT_ID = "despesas-2760c"
@@ -40,7 +40,7 @@ client_x509_cert_url = "COLE_CLIENT_X509_CERT_URL"
 universe_domain = "googleapis.com"
 ```
 
-O arquivo `.streamlit/secrets.toml` local usa a mesma estrutura. Copie os valores do JSON correspondente; nao cole o JSON inteiro no campo Secrets. A chave privada e sensivel e nao deve ser compartilhada nem commitada.
+O app le `[firebase_service_account]` e `FIREBASE_PROJECT_ID` tanto do arquivo local quanto dos Secrets do Streamlit Cloud. O conteudo inserido em **App settings > Secrets** deve ser TOML, nao o JSON inteiro. A chave privada e sensivel e nao deve ser compartilhada nem commitada.
 
 ## Instalar e executar
 
